@@ -27,6 +27,8 @@
 		B341EC002D15679500860CC6 /* Taja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B341EC112D15679900860CC6 /* TajaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TajaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B341EC1B2D15679900860CC6 /* TajaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TajaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B341EEB52D158CF400860CC6 /* TajaMemory */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TajaMemory; sourceTree = "<group>"; };
+		B341EEB62D158F1A00860CC6 /* TajaMemoryUIComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TajaMemoryUIComponents; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -122,6 +124,8 @@
 		B341EEB42D158C3C00860CC6 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				B341EEB62D158F1A00860CC6 /* TajaMemoryUIComponents */,
+				B341EEB52D158CF400860CC6 /* TajaMemory */,
 			);
 			path = Packages;
 			sourceTree = "<group>";
