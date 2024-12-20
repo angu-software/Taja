@@ -14,6 +14,6 @@ extension MemoryCardContent {
     }
 
     static func fixture(id: String) -> Self {
-        self.init(matchingId: id)
+        self.init(id: id)
     }
 }

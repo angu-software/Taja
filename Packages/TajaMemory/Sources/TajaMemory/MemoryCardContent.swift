@@ -7,11 +7,11 @@
 
 import Foundation
 
-public struct MemoryCardContent: Equatable {
+public struct MemoryCardContent: Equatable, Identifiable {
 
-    let matchingId: String
+    public let id: String
 
-    init(matchingId: String) {
-        self.matchingId = matchingId
+    public init(id: String) {
+        self.id = id
     }
 }
