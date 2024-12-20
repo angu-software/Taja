@@ -11,6 +11,7 @@ import Testing
 
 @Suite
 struct MemoryCardGameBoardTests {
+
     @Test
     func should_generate_two_matching_cards_for_each_photo() async throws {
         let cardContent1 = MemoryCardContent.fixture(id: "1")
