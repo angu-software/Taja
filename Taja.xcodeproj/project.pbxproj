@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B341EEB92D158FC600860CC6 /* TajaMemory in Frameworks */ = {isa = PBXBuildFile; productRef = B341EEB82D158FC600860CC6 /* TajaMemory */; };
 		B341EEBC2D158FD600860CC6 /* TajaMemoryUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = B341EEBB2D158FD600860CC6 /* TajaMemoryUIComponents */; };
+		B341EEBE2D1594C100860CC6 /* Worklog.md in Sources */ = {isa = PBXBuildFile; fileRef = B341EEBD2D1594B900860CC6 /* Worklog.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		B341EC1B2D15679900860CC6 /* TajaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TajaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B341EEB52D158CF400860CC6 /* TajaMemory */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TajaMemory; sourceTree = "<group>"; };
 		B341EEB62D158F1A00860CC6 /* TajaMemoryUIComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TajaMemoryUIComponents; sourceTree = "<group>"; };
+		B341EEBD2D1594B900860CC6 /* Worklog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Worklog.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -111,6 +113,7 @@
 		B341EBF72D15679500860CC6 = {
 			isa = PBXGroup;
 			children = (
+				B341EEBD2D1594B900860CC6 /* Worklog.md */,
 				B341EEB42D158C3C00860CC6 /* Packages */,
 				B341EC022D15679500860CC6 /* Sources */,
 				B341EEA82D158B6C00860CC6 /* Tests */,
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B341EEBE2D1594C100860CC6 /* Worklog.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
