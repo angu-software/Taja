@@ -14,10 +14,10 @@ struct ContentView: View {
         GridLayout(alignment: .center, horizontalSpacing: 4, verticalSpacing: 4) {
             GridRow(alignment: .center) {
                 MemoryCardView()
-                MemoryCardView()
+                MemoryCardView(state: .revealed)
             }
             GridRow(alignment: .center) {
-                MemoryCardView()
+                MemoryCardView(state: .revealed)
                 MemoryCardView()
             }
         }
@@ -29,11 +29,14 @@ struct ContentView: View {
     ContentView()
 }
 
+import TajaMemory
+
 extension MemoryCardView {
 
-    init() {
+    init(state: MemoryCard.State = .concealed) {
         self.init(frontImage: .memoryCardDuck,
-                  backImage: .memoryCardBack)
+                  backImage: .memoryCardBack,
+                  state: MemoryCard(state: state))
 
     }
 }

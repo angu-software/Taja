@@ -1,20 +1,24 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-struct MemoryCard {
+public struct MemoryCard {
 
-    enum State {
+    public enum State {
         case concealed
         case revealed
     }
 
-    var state: State = .concealed
+    public var state: State
 
-    mutating func reveal() {
+    public init(state: State = .concealed) {
+        self.state = state
+    }
+
+    public mutating func reveal() {
         state = state == .concealed ? .revealed : .concealed
     }
 
-    mutating func conceal() {
+    public mutating func conceal() {
         state = .concealed
     }
 }
