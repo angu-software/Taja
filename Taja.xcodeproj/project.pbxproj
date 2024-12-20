@@ -29,20 +29,47 @@
 		B341EC1B2D15679900860CC6 /* TajaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TajaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B341EEB12D158B7100860CC6 /* Exceptions for "Tests" folder in "Taja" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TajaTests/TajaTests.swift,
+				TajaUITests/TajaUITests.swift,
+				TajaUITests/TajaUITestsLaunchTests.swift,
+			);
+			target = B341EBFF2D15679500860CC6 /* Taja */;
+		};
+		B341EEB22D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TajaTests/TajaTests.swift,
+			);
+			target = B341EC102D15679900860CC6 /* TajaTests */;
+		};
+		B341EEB32D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TajaUITests/TajaUITests.swift,
+				TajaUITests/TajaUITestsLaunchTests.swift,
+			);
+			target = B341EC1A2D15679900860CC6 /* TajaUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B341EC022D15679500860CC6 /* Taja */ = {
+		B341EC022D15679500860CC6 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Taja;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		B341EC142D15679900860CC6 /* TajaTests */ = {
+		B341EEA82D158B6C00860CC6 /* Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TajaTests;
-			sourceTree = "<group>";
-		};
-		B341EC1E2D15679900860CC6 /* TajaUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TajaUITests;
+			exceptions = (
+				B341EEB12D158B7100860CC6 /* Exceptions for "Tests" folder in "Taja" target */,
+				B341EEB22D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaTests" target */,
+				B341EEB32D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaUITests" target */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,9 +102,8 @@
 		B341EBF72D15679500860CC6 = {
 			isa = PBXGroup;
 			children = (
-				B341EC022D15679500860CC6 /* Taja */,
-				B341EC142D15679900860CC6 /* TajaTests */,
-				B341EC1E2D15679900860CC6 /* TajaUITests */,
+				B341EC022D15679500860CC6 /* Sources */,
+				B341EEA82D158B6C00860CC6 /* Tests */,
 				B341EC012D15679500860CC6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,7 +134,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				B341EC022D15679500860CC6 /* Taja */,
+				B341EC022D15679500860CC6 /* Sources */,
+				B341EEA82D158B6C00860CC6 /* Tests */,
 			);
 			name = Taja;
 			packageProductDependencies = (
@@ -130,9 +157,6 @@
 			dependencies = (
 				B341EC132D15679900860CC6 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				B341EC142D15679900860CC6 /* TajaTests */,
-			);
 			name = TajaTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +176,6 @@
 			);
 			dependencies = (
 				B341EC1D2D15679900860CC6 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				B341EC1E2D15679900860CC6 /* TajaUITests */,
 			);
 			name = TajaUITests;
 			packageProductDependencies = (
@@ -392,11 +413,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Taja/Taja.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/Taja.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Taja/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
 				DEVELOPMENT_TEAM = 94RX8Q59P5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -422,11 +443,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Taja/Taja.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/Taja.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Taja/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Sources/Preview Content\"";
 				DEVELOPMENT_TEAM = 94RX8Q59P5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
