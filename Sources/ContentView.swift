@@ -7,24 +7,18 @@
 
 import SwiftUI
 
+import TajaMemoryUIComponents
+
 struct ContentView: View {
     var body: some View {
         GridLayout(alignment: .center, horizontalSpacing: 4, verticalSpacing: 4) {
             GridRow(alignment: .center) {
-                Rectangle()
-                    .fill(Color.orange)
-                    .frame(width: 200, height: 200)
-                Rectangle()
-                    .fill(Color.orange)
-                    .frame(width: 200, height: 200)
+                MemoryCardView()
+                MemoryCardView()
             }
             GridRow(alignment: .center) {
-                Rectangle()
-                    .fill(Color.orange)
-                    .frame(width: 200, height: 200)
-                Rectangle()
-                    .fill(Color.orange)
-                    .frame(width: 200, height: 200)
+                MemoryCardView()
+                MemoryCardView()
             }
         }
         .padding()
