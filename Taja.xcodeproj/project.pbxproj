@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B341EEB92D158FC600860CC6 /* TajaMemory in Frameworks */ = {isa = PBXBuildFile; productRef = B341EEB82D158FC600860CC6 /* TajaMemory */; };
+		B341EEBC2D158FD600860CC6 /* TajaMemoryUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = B341EEBB2D158FD600860CC6 /* TajaMemoryUIComponents */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B341EC122D15679900860CC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -81,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B341EEB92D158FC600860CC6 /* TajaMemory in Frameworks */,
+				B341EEBC2D158FD600860CC6 /* TajaMemoryUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +158,8 @@
 			);
 			name = Taja;
 			packageProductDependencies = (
+				B341EEB82D158FC600860CC6 /* TajaMemory */,
+				B341EEBB2D158FD600860CC6 /* TajaMemoryUIComponents */,
 			);
 			productName = Taja;
 			productReference = B341EC002D15679500860CC6 /* Taja.app */;
@@ -228,6 +237,9 @@
 			);
 			mainGroup = B341EBF72D15679500860CC6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B341EEBA2D158FD600860CC6 /* XCLocalSwiftPackageReference "Packages/TajaMemoryUIComponents" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B341EC012D15679500860CC6 /* Products */;
 			projectDirPath = "";
@@ -600,6 +612,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B341EEBA2D158FD600860CC6 /* XCLocalSwiftPackageReference "Packages/TajaMemoryUIComponents" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/TajaMemoryUIComponents;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B341EEB82D158FC600860CC6 /* TajaMemory */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TajaMemory;
+		};
+		B341EEBB2D158FD600860CC6 /* TajaMemoryUIComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TajaMemoryUIComponents;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B341EBF82D15679500860CC6 /* Project object */;
 }
