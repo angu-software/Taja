@@ -9,11 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        GridLayout(alignment: .center, horizontalSpacing: 4, verticalSpacing: 4) {
+            GridRow(alignment: .center) {
+                Rectangle()
+                    .fill(Color.orange)
+                    .frame(width: 200, height: 200)
+                Rectangle()
+                    .fill(Color.orange)
+                    .frame(width: 200, height: 200)
+            }
+            GridRow(alignment: .center) {
+                Rectangle()
+                    .fill(Color.orange)
+                    .frame(width: 200, height: 200)
+                Rectangle()
+                    .fill(Color.orange)
+                    .frame(width: 200, height: 200)
+            }
         }
         .padding()
     }
