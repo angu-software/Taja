@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "888B624E-8B33-40C6-B98A-E392D8E7B2C6",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/TajaMemory",
+        "identifier" : "TajaMemoryTests",
+        "name" : "TajaMemoryTests"
+      }
+    }
+  ],
+  "version" : 1
+}

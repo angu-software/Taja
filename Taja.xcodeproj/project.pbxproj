@@ -81,6 +81,11 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		B341EEC22D15B04200860CC6 /* TestPlans */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TestPlans;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +118,7 @@
 		B341EBF72D15679500860CC6 = {
 			isa = PBXGroup;
 			children = (
+				B341EEC22D15B04200860CC6 /* TestPlans */,
 				B341EEBD2D1594B900860CC6 /* Worklog.md */,
 				B341EEB42D158C3C00860CC6 /* Packages */,
 				B341EC022D15679500860CC6 /* Sources */,
@@ -158,6 +164,7 @@
 			fileSystemSynchronizedGroups = (
 				B341EC022D15679500860CC6 /* Sources */,
 				B341EEA82D158B6C00860CC6 /* Tests */,
+				B341EEC22D15B04200860CC6 /* TestPlans */,
 			);
 			name = Taja;
 			packageProductDependencies = (
