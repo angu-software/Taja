@@ -28,3 +28,12 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+extension MemoryCardView {
+
+    init() {
+        self.init(frontImage: .memoryCardDuck,
+                  backImage: .memoryCardBack)
+
+    }
+}
