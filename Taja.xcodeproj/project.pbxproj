@@ -102,6 +102,7 @@
 		B341EBF72D15679500860CC6 = {
 			isa = PBXGroup;
 			children = (
+				B341EEB42D158C3C00860CC6 /* Packages */,
 				B341EC022D15679500860CC6 /* Sources */,
 				B341EEA82D158B6C00860CC6 /* Tests */,
 				B341EC012D15679500860CC6 /* Products */,
@@ -116,6 +117,13 @@
 				B341EC1B2D15679900860CC6 /* TajaUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B341EEB42D158C3C00860CC6 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
