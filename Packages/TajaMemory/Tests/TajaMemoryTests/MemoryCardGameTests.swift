@@ -13,8 +13,12 @@ import Testing
 struct MemoryCardGameBoardTests {
     @Test
     func should_generate_two_matching_cards_for_each_photo() async throws {
-        let gameBoard = MemoryCardGameBoard(contents: [MemoryCardContent()])
+        let cardContent1 = MemoryCardContent()
+        let cardContent2 = MemoryCardContent()
+        let gameBoard = MemoryCardGameBoard(contents: [cardContent1,
+                                                       cardContent2])
 
-        #expect(gameBoard.cards.count == 2)
+        #expect(gameBoard.cards.count(where: { $0.content == cardContent1 }) == 2)
+        #expect(gameBoard.cards.count(where: { $0.content == cardContent2 }) == 2)
     }
 }

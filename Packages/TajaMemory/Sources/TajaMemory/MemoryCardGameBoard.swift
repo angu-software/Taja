@@ -17,7 +17,9 @@ struct MemoryCardGameBoard {
     }
 
     static func makeCards(contents: [MemoryCardContent]) -> [MemoryCard] {
-        return [MemoryCard(),
-                MemoryCard()]
+        return contents.reduce(into: [MemoryCard]()) { partialResult, content in
+            partialResult += [MemoryCard(content: content),
+                              MemoryCard(content: content)]
+        }
     }
 }

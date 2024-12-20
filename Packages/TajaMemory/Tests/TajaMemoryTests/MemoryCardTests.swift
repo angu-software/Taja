@@ -11,14 +11,19 @@ import Testing
 
 @Suite
 struct MemoryCardTests {
+
+    private func makeMemoryCard() -> MemoryCard {
+        return MemoryCard(content: .init())
+    }
+
     @Test
     func should_be_concealed_initially() async throws {
-        #expect(MemoryCard().state == .concealed)
+        #expect(MemoryCard(content: .init()).state == .concealed)
     }
 
     @Test
     func should_be_revealed_when_revealing() async throws {
-        var memoryCard = MemoryCard()
+        var memoryCard = makeMemoryCard()
 
         memoryCard.reveal()
 
@@ -27,7 +32,7 @@ struct MemoryCardTests {
 
     @Test
     func should_be_concealed_when_concealing() async throws {
-        var memoryCard = MemoryCard()
+        var memoryCard = makeMemoryCard()
         memoryCard.reveal()
 
         memoryCard.conceal()

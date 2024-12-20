@@ -5,7 +5,8 @@
 //  Created by Andreas Guenther on 20.12.24.
 //
 
+import Foundation
 
-struct MemoryCardContent {
-
+public struct MemoryCardContent: Equatable {
+    let matchingId: String = UUID().uuidString
 }

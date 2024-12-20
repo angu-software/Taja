@@ -1,7 +1,7 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-public struct MemoryCard {
+public struct MemoryCard: Equatable {
 
     public enum State {
         case concealed
@@ -10,7 +10,11 @@ public struct MemoryCard {
 
     public var state: State
 
-    public init(state: State = .concealed) {
+    let content: MemoryCardContent
+
+    public init(content: MemoryCardContent,
+                state: State = .concealed) {
+        self.content = content
         self.state = state
     }
 
