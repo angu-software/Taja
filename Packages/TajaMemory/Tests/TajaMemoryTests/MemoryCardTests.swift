@@ -13,12 +13,12 @@ import Testing
 struct MemoryCardTests {
 
     private func makeMemoryCard() -> MemoryCard {
-        return MemoryCard(content: .init())
+        return MemoryCard(content: .dummy)
     }
 
     @Test
     func should_be_concealed_initially() async throws {
-        #expect(MemoryCard(content: .init()).state == .concealed)
+        #expect(MemoryCard(content: .dummy).state == .concealed)
     }
 
     @Test

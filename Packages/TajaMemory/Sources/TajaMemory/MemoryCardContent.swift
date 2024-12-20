@@ -8,5 +8,10 @@
 import Foundation
 
 public struct MemoryCardContent: Equatable {
-    let matchingId: String = UUID().uuidString
+
+    let matchingId: String
+
+    init(matchingId: String) {
+        self.matchingId = matchingId
+    }
 }
