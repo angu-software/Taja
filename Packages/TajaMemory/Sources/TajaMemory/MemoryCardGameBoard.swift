@@ -11,6 +11,10 @@ struct MemoryCardGameBoard {
 
     var cards: [MemoryCard]
 
+    var revealedCards: [MemoryCard] {
+        return cards.filter({ $0.state == .revealed })
+    }
+
     init(contents: [MemoryCardContent]) {
         self.contents = contents
         self.cards = Self.makeCards(contents: contents)
@@ -21,5 +25,13 @@ struct MemoryCardGameBoard {
             partialResult += [MemoryCard(content: content),
                               MemoryCard(content: content)]
         }
+    }
+
+    mutating func revealCard(_ card: MemoryCard) {
+        guard let cardIndex = cards.firstIndex(of: card) else {
+            return
+        }
+
+        cards[cardIndex].reveal()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MemoryContentCardDummy.swift
+//  MemoryContentCardDouble.swift
 //  TajaMemory
 //
 //  Created by Andreas Guenther on 20.12.24.

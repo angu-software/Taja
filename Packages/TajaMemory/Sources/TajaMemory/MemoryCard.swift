@@ -24,7 +24,7 @@ public struct MemoryCard: Equatable, Identifiable {
     }
 
     public mutating func reveal() {
-        state = state == .concealed ? .revealed : .concealed
+        state = .revealed
     }
 
     public mutating func conceal() {

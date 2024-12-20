@@ -8,8 +8,9 @@
 
 ## Backlog
 
-* [] game loop
-* [] Memory card UI
-* [] Default images
+* [ ] Tag MemoryCardGameControllerTests as ACC tests
+* [ ] game loop
+* [ ] Memory card UI
+* [ ] Default images
 
 ## Done for next Release
