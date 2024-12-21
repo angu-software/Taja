@@ -22,7 +22,7 @@ class MemoryCardGameController {
     }
 }
 
-@Suite
+@Suite(.tags(.acceptanceTest))
 struct MemoryCardGameControllerTests {
 
     private let controller: MemoryCardGameController
