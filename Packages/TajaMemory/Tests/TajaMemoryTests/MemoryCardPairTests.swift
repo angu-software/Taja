@@ -9,6 +9,13 @@ import Testing
 
 @testable import TajaMemory
 
+/* =======
+ * Work log
+ * =======
+ *
+ * - [ ] one,two == two,one
+ */
+
 struct MemoryCardPairTests {
 
     @Test
