@@ -33,8 +33,6 @@
 		B341EC002D15679500860CC6 /* Taja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B341EC112D15679900860CC6 /* TajaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TajaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B341EC1B2D15679900860CC6 /* TajaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TajaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B341EEB52D158CF400860CC6 /* TajaMemory */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TajaMemory; sourceTree = "<group>"; };
-		B341EEB62D158F1A00860CC6 /* TajaMemoryUIComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = TajaMemoryUIComponents; sourceTree = "<group>"; };
 		B341EEBD2D1594B900860CC6 /* Worklog.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Worklog.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +84,11 @@
 			path = TestPlans;
 			sourceTree = "<group>";
 		};
+		B3A21DEB2D1869E6006EBD82 /* Packages */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Packages;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,9 +121,9 @@
 		B341EBF72D15679500860CC6 = {
 			isa = PBXGroup;
 			children = (
+				B3A21DEB2D1869E6006EBD82 /* Packages */,
 				B341EEC22D15B04200860CC6 /* TestPlans */,
 				B341EEBD2D1594B900860CC6 /* Worklog.md */,
-				B341EEB42D158C3C00860CC6 /* Packages */,
 				B341EC022D15679500860CC6 /* Sources */,
 				B341EEA82D158B6C00860CC6 /* Tests */,
 				B341EC012D15679500860CC6 /* Products */,
@@ -135,15 +138,6 @@
 				B341EC1B2D15679900860CC6 /* TajaUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B341EEB42D158C3C00860CC6 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				B341EEB62D158F1A00860CC6 /* TajaMemoryUIComponents */,
-				B341EEB52D158CF400860CC6 /* TajaMemory */,
-			);
-			path = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

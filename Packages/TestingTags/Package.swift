@@ -4,23 +4,16 @@
 import PackageDescription
 
 let package = Package(
-    name: "TajaMemory",
+    name: "TestingTags",
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "TajaMemory",
-            targets: ["TajaMemory"]),
+            name: "TestingTags",
+            targets: ["TestingTags"]),
     ],
-    dependencies: [.package(path: "TestingTags")],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "TajaMemory"),
-        .testTarget(
-            name: "TajaMemoryTests",
-            dependencies: ["TajaMemory",
-                           "TestingTags"]
-        ),
+        .target(name: "TestingTags")
     ]
 )

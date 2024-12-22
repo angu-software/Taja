@@ -7,6 +7,8 @@
 
 import Testing
 
+import TestingTags
+
 @testable import TajaMemory
 
 class MemoryCardGameController {
