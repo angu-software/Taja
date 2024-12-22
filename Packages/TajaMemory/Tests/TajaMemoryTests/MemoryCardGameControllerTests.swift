@@ -42,8 +42,8 @@ class MemoryCardGameController {
  * Next game has different card order
 
  * ACCs
- * New game -> all cards are concealed
- * Select one card -> reveal
+ * ~~New game -> all cards are concealed~~
+ * ~~Select one card -> reveal~~
  * When second revealed card match first card -> resolved
  * When second revealed card does not match first card -> conceal two cards
  * When all cards revealed -> game ends
@@ -68,19 +68,14 @@ struct MemoryCardGameControllerTests {
     }
 
     @Test(.tags(.acceptanceTest))
-    func should_begin_new_game_with_all_cards_concealed() async throws {
+    func should_reveal_first_selected_card() async throws {
         startNewGame()
 
-        #expect(allCardsConcealed())
-    }
+        let selectedCard = try #require(choseCard())
+        turnCard(selectedCard)
 
-    @Test
-    func should_reveal_a_card_when_it_is_selected() async throws {
-        let card = try #require(anyConcealedCard())
-
-        selectCard(card)
-
-        #expect(isCardRevealed(card))
+        #expect(numberOfRevealedCards() == 1)
+        #expect(isCardRevealed(selectedCard))
     }
 
     // MARK: - Testing DSL
@@ -89,16 +84,20 @@ struct MemoryCardGameControllerTests {
         controller.startNewGame()
     }
 
+    private func choseCard() -> MemoryCard? {
+        return controller.gameBoard.cards.first(where: { $0.state == .concealed })
+    }
+
+    private func turnCard(_ card: MemoryCard) {
+        controller.didSelectCard(card)
+    }
+
     private func allCardsConcealed() -> Bool {
         return controller.cards.allSatisfy({ $0.state == .concealed })
     }
 
-    private func anyConcealedCard() -> MemoryCard? {
-        return controller.gameBoard.cards.first(where: { $0.state == .concealed })
-    }
-
-    private func selectCard(_ card: MemoryCard) {
-        controller.didSelectCard(card)
+    private func numberOfRevealedCards() -> Int {
+        return controller.gameBoard.revealedCards.count
     }
 
     private func isCardRevealed(_ card: MemoryCard) -> Bool {
