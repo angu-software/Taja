@@ -26,12 +26,4 @@ struct MemoryCardGameBoard {
                               MemoryCard(content: content)]
         }
     }
-
-    mutating func revealCard(_ card: MemoryCard) {
-        guard let cardIndex = cards.firstIndex(of: card) else {
-            return
-        }
-
-        cards[cardIndex].reveal()
-    }
 }

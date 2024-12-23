@@ -19,7 +19,12 @@ class MemoryCardGameController {
     private var firstCard: MemoryCard?
 
     var cards: [MemoryCard] {
-        return gameBoard.cards
+        get {
+            return gameBoard.cards
+        }
+        set {
+            gameBoard.cards = newValue
+        }
     }
 
     init(gameBoard: MemoryCardGameBoard) {
@@ -31,10 +36,9 @@ class MemoryCardGameController {
     }
 
     func didSelectCard(_ card: MemoryCard) {
-        gameBoard.revealCard(card)
-
         var card = card
-        card.reveal()
+        revealCard(&card)
+
         if let firstCard {
             let pair = MemoryCardPair(firstCard, card)
             if pair.isResolved {
@@ -43,6 +47,19 @@ class MemoryCardGameController {
         } else {
             firstCard = card
         }
+    }
+
+    private func index(for card: MemoryCard) -> Int? {
+        return cards.firstIndex(of: card)
+    }
+
+    private func revealCard(_ card: inout MemoryCard) {
+        guard let cardIndex = cards.firstIndex(of: card) else {
+            return
+        }
+
+        card.reveal()
+        cards[cardIndex] = card
     }
 }
 
