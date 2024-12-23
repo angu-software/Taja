@@ -14,6 +14,9 @@ import TestingTags
 class MemoryCardGameController {
 
     private(set) var gameBoard: MemoryCardGameBoard
+    private(set) var resolvedPairs: [MemoryCardPair] = []
+
+    private var firstCard: MemoryCard?
 
     var cards: [MemoryCard] {
         return gameBoard.cards
@@ -29,6 +32,17 @@ class MemoryCardGameController {
 
     func didSelectCard(_ card: MemoryCard) {
         gameBoard.revealCard(card)
+
+        var card = card
+        card.reveal()
+        if let firstCard {
+            let pair = MemoryCardPair(firstCard, card)
+            if pair.isResolved {
+                resolvedPairs.append(pair)
+            }
+        } else {
+            firstCard = card
+        }
     }
 }
 
@@ -40,11 +54,12 @@ class MemoryCardGameController {
  * Select concealed card -> card revealed
  * Selecting revealed card -> does nothing
  * Next game has different card order
+ * If second card is first card (revealed) do nothing
 
  * ACCs
  * ~~New game -> all cards are concealed~~
  * ~~Select one card -> reveal~~
- * When second revealed card match first card -> resolved
+ * ~~When second revealed card match first card -> resolved~~
  * When second revealed card does not match first card -> conceal two cards
  * When all cards revealed -> game ends
  */
@@ -78,13 +93,30 @@ struct MemoryCardGameControllerTests {
         #expect(isCardRevealed(selectedCard))
     }
 
+    @Test func should_resolve_as_pair_of_cards_when_second_selected_card_matches_first_card() async throws {
+        startNewGame()
+        let firstCard = try #require(choseCard())
+        turnCard(firstCard)
+
+        let secondCard = try #require(choseCard(matching: firstCard))
+        turnCard(secondCard)
+
+        #expect(isResolvedPair(firstCard, secondCard))
+    }
+
     // MARK: - Testing DSL
 
     private func startNewGame() {
         controller.startNewGame()
     }
 
-    private func choseCard() -> MemoryCard? {
+    private func choseCard(matching matchingCard: MemoryCard? = nil) -> MemoryCard? {
+        if let matchingCard {
+            return controller.gameBoard.cards.first(where: {
+                return $0.state == .concealed && $0.content == matchingCard.content
+            })
+        }
+
         return controller.gameBoard.cards.first(where: { $0.state == .concealed })
     }
 
@@ -102,5 +134,12 @@ struct MemoryCardGameControllerTests {
 
     private func isCardRevealed(_ card: MemoryCard) -> Bool {
         return controller.gameBoard.revealedCards.contains(where: { $0.id == card.id })
+    }
+
+    private func isResolvedPair(_ first: MemoryCard, _ second: MemoryCard) -> Bool {
+        return controller.resolvedPairs.contains { pair in
+            return pair.one.id == first.id &&
+            pair.two.id == second.id
+        }
     }
 }
