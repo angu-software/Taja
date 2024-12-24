@@ -39,18 +39,18 @@ class MemoryCardGameController {
         var card = card
         revealCard(&card)
 
-        if let firstCard {
+        if var firstCard {
             let pair = MemoryCardPair(firstCard, card)
             if pair.isResolved {
                 resolvedPairs.append(pair)
+            } else {
+                concealCard(&card)
+                concealCard(&firstCard)
             }
+            self.firstCard = nil
         } else {
             firstCard = card
         }
-    }
-
-    private func index(for card: MemoryCard) -> Int? {
-        return cards.firstIndex(of: card)
     }
 
     private func revealCard(_ card: inout MemoryCard) {
@@ -59,6 +59,15 @@ class MemoryCardGameController {
         }
 
         card.reveal()
+        cards[cardIndex] = card
+    }
+
+    private func concealCard(_ card: inout MemoryCard) {
+        guard let cardIndex = cards.firstIndex(of: card) else {
+            return
+        }
+
+        card.conceal()
         cards[cardIndex] = card
     }
 }
@@ -72,12 +81,13 @@ class MemoryCardGameController {
  * Selecting revealed card -> does nothing
  * Next game has different card order
  * If second card is first card (revealed) do nothing
+ * Inject cards into controller to have full control over card state in test (GameBoard?)
 
  * ACCs
  * ~~New game -> all cards are concealed~~
  * ~~Select one card -> reveal~~
  * ~~When second revealed card match first card -> resolved~~
- * When second revealed card does not match first card -> conceal two cards
+ * ~~When second revealed card does not match first card -> conceal two cards~~
  * When all cards revealed -> game ends
  */
 
@@ -103,38 +113,65 @@ struct MemoryCardGameControllerTests {
     func should_reveal_first_selected_card() async throws {
         startNewGame()
 
-        let selectedCard = try #require(choseCard())
+        let selectedCard = try #require(choseConcealedCard())
         turnCard(selectedCard)
 
         #expect(numberOfRevealedCards() == 1)
         #expect(isCardRevealed(selectedCard))
     }
 
-    @Test func should_resolve_as_pair_of_cards_when_second_selected_card_matches_first_card() async throws {
+    @Test
+    func should_resolve_selected_pair_of_cards_when_second_selected_card_matches_first_card() async throws {
         startNewGame()
-        let firstCard = try #require(choseCard())
+        let firstCard = try #require(choseConcealedCard())
         turnCard(firstCard)
 
-        let secondCard = try #require(choseCard(matching: firstCard))
+        let secondCard = try #require(choseConcealedCard(.matching(firstCard)))
         turnCard(secondCard)
 
         #expect(isResolvedPair(firstCard, secondCard))
     }
 
+    @Test
+    func should_reset_selected_pair_of_cards_when_second_selected_card__does_not_match_first_card() async throws {
+        startNewGame()
+        let firstCard = try #require(choseConcealedCard())
+        turnCard(firstCard)
+
+        let secondCard = try #require(choseConcealedCard(.notMatching(firstCard)))
+        turnCard(secondCard)
+
+        #expect(!isResolvedPair(firstCard, secondCard))
+        #expect(!isCardRevealed(firstCard))
+        #expect(!isCardRevealed(secondCard))
+    }
+
     // MARK: - Testing DSL
+
+    enum CardMatcher {
+        case any
+        case matching(MemoryCard)
+        case notMatching(MemoryCard)
+    }
 
     private func startNewGame() {
         controller.startNewGame()
     }
 
-    private func choseCard(matching matchingCard: MemoryCard? = nil) -> MemoryCard? {
-        if let matchingCard {
+    private func choseConcealedCard(_ match: CardMatcher = .any) -> MemoryCard? {
+
+        switch match {
+        case .any:
+            return controller.gameBoard.cards.first(where: { $0.state == .concealed })
+        case let .matching(memoryCard):
             return controller.gameBoard.cards.first(where: {
-                return $0.state == .concealed && $0.content == matchingCard.content
+                return $0.state == .concealed && $0.content == memoryCard.content
+            })
+        case let .notMatching(memoryCard):
+            return controller.gameBoard.cards.first(where: {
+                return $0.state == .concealed && $0.content != memoryCard.content
             })
         }
-
-        return controller.gameBoard.cards.first(where: { $0.state == .concealed })
     }
 
     private func turnCard(_ card: MemoryCard) {
