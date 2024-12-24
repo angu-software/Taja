@@ -11,28 +11,19 @@ import TestingTags
 
 @testable import TajaMemory
 
-class MemoryCardGameController {
-
-    private let gameBoard: MemoryCardGameBoard
-    private(set) var resolvedPairs: [MemoryCardPair] = []
+final class MemoryCardGameController {
 
     var revealedCards: [MemoryCard] {
         return cards.filter({ $0.state == .revealed })
     }
 
+    private(set) var cards: [MemoryCard]
+    private(set) var resolvedPairs: [MemoryCardPair] = []
+
     private var firstCard: MemoryCard?
 
-    var cards: [MemoryCard] {
-        get {
-            return gameBoard.cards
-        }
-        set {
-            gameBoard.cards = newValue
-        }
-    }
-
-    init(gameBoard: MemoryCardGameBoard) {
-        self.gameBoard = gameBoard
+    init(cards: [MemoryCard]) {
+        self.cards = cards
     }
 
     func startNewGame() {
@@ -105,7 +96,7 @@ struct MemoryCardGameControllerTests {
     init() {
         self.gameLoop = MemoryCardGameLoop()
         self.gameBoard = .fixture()
-        self.controller = MemoryCardGameController(gameBoard: gameBoard)
+        self.controller = MemoryCardGameController(cards: gameBoard.cards)
     }
 
     @Test(.tags(.acceptanceTest))
@@ -167,13 +158,13 @@ struct MemoryCardGameControllerTests {
     private func choseConcealedCard(_ match: CardMatcher = .any) -> MemoryCard? {
         switch match {
         case .any:
-            return gameBoard.cards.first(where: { $0.state == .concealed })
+            return controller.cards.first(where: { $0.state == .concealed })
         case let .matching(memoryCard):
-            return gameBoard.cards.first(where: {
+            return controller.cards.first(where: {
                 return $0.state == .concealed && $0.content == memoryCard.content
             })
         case let .notMatching(memoryCard):
-            return gameBoard.cards.first(where: {
+            return controller.cards.first(where: {
                 return $0.state == .concealed && $0.content != memoryCard.content
             })
         }
