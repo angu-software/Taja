@@ -11,10 +11,6 @@ final class MemoryCardGameBoard {
 
     var cards: [MemoryCard]
 
-    var revealedCards: [MemoryCard] {
-        return cards.filter({ $0.state == .revealed })
-    }
-
     init(contents: [MemoryCardContent]) {
         self.contents = contents
         self.cards = Self.makeCards(contents: contents)

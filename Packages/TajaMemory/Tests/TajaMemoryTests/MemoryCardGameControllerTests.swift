@@ -16,6 +16,10 @@ class MemoryCardGameController {
     private let gameBoard: MemoryCardGameBoard
     private(set) var resolvedPairs: [MemoryCardPair] = []
 
+    var revealedCards: [MemoryCard] {
+        return cards.filter({ $0.state == .revealed })
+    }
+
     private var firstCard: MemoryCard?
 
     var cards: [MemoryCard] {
@@ -161,7 +165,6 @@ struct MemoryCardGameControllerTests {
     }
 
     private func choseConcealedCard(_ match: CardMatcher = .any) -> MemoryCard? {
-
         switch match {
         case .any:
             return gameBoard.cards.first(where: { $0.state == .concealed })
@@ -185,11 +188,11 @@ struct MemoryCardGameControllerTests {
     }
 
     private func numberOfRevealedCards() -> Int {
-        return gameBoard.revealedCards.count
+        return controller.revealedCards.count
     }
 
     private func isCardRevealed(_ card: MemoryCard) -> Bool {
-        return gameBoard.revealedCards.contains(where: { $0.id == card.id })
+        return controller.revealedCards.contains(where: { $0.id == card.id })
     }
 
     private func isResolvedPair(_ first: MemoryCard, _ second: MemoryCard) -> Bool {
