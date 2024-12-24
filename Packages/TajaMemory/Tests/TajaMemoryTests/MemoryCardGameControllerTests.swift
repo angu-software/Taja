@@ -11,74 +11,15 @@ import TestingTags
 
 @testable import TajaMemory
 
-final class MemoryCardGameController {
-
-    var revealedCards: [MemoryCard] {
-        return cards.filter({ $0.state == .revealed })
-    }
-
-    private(set) var cards: [MemoryCard]
-    private(set) var resolvedPairs: [MemoryCardPair] = []
-
-    private var firstCard: MemoryCard?
-
-    init(cards: [MemoryCard]) {
-        self.cards = cards
-    }
-
-    func didSelectCard(_ card: MemoryCard) {
-        var card = card
-        revealCard(&card)
-
-        if var firstCard {
-            let pair = MemoryCardPair(firstCard, card)
-            if pair.isResolved {
-                resolvedPairs.append(pair)
-            } else {
-                concealCard(&card)
-                concealCard(&firstCard)
-            }
-            self.firstCard = nil
-        } else {
-            firstCard = card
-        }
-    }
-
-    private func revealCard(_ card: inout MemoryCard) {
-        guard let cardIndex = cards.firstIndex(of: card) else {
-            return
-        }
-
-        card.reveal()
-        cards[cardIndex] = card
-    }
-
-    private func concealCard(_ card: inout MemoryCard) {
-        guard let cardIndex = cards.firstIndex(of: card) else {
-            return
-        }
-
-        card.conceal()
-        cards[cardIndex] = card
-    }
-}
-
 /* =======
  * Work log
  * =======
  *
  * No selection when game loop past selecting states
- * Select concealed card -> card revealed
- * Selecting revealed card -> does nothing
+ * Selecting revealed card -> does nothing [If second card is first card (revealed) do nothing]
  * Next game has different card order
- * If second card is first card (revealed) do nothing
- * Inject cards into controller to have full control over card state in test (GameBoard?)
 
  * ACCs
- * ~~New game -> all cards are concealed~~
- * ~~Select one card -> reveal~~
- * ~~When second revealed card match first card -> resolved~~
- * ~~When second revealed card does not match first card -> conceal two cards~~
  * When all cards revealed -> game ends
  */
 
