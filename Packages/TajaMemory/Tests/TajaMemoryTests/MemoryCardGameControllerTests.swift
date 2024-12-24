@@ -13,7 +13,7 @@ import TestingTags
 
 class MemoryCardGameController {
 
-    private(set) var gameBoard: MemoryCardGameBoard
+    private let gameBoard: MemoryCardGameBoard
     private(set) var resolvedPairs: [MemoryCardPair] = []
 
     private var firstCard: MemoryCard?
@@ -95,11 +95,13 @@ class MemoryCardGameController {
 struct MemoryCardGameControllerTests {
 
     private let gameLoop: MemoryCardGameLoop
+    private let gameBoard: MemoryCardGameBoard
     private let controller: MemoryCardGameController
 
     init() {
         self.gameLoop = MemoryCardGameLoop()
-        self.controller = MemoryCardGameController(gameBoard: .fixture())
+        self.gameBoard = .fixture()
+        self.controller = MemoryCardGameController(gameBoard: gameBoard)
     }
 
     @Test(.tags(.acceptanceTest))
@@ -162,13 +164,13 @@ struct MemoryCardGameControllerTests {
 
         switch match {
         case .any:
-            return controller.gameBoard.cards.first(where: { $0.state == .concealed })
+            return gameBoard.cards.first(where: { $0.state == .concealed })
         case let .matching(memoryCard):
-            return controller.gameBoard.cards.first(where: {
+            return gameBoard.cards.first(where: {
                 return $0.state == .concealed && $0.content == memoryCard.content
             })
         case let .notMatching(memoryCard):
-            return controller.gameBoard.cards.first(where: {
+            return gameBoard.cards.first(where: {
                 return $0.state == .concealed && $0.content != memoryCard.content
             })
         }
@@ -179,15 +181,15 @@ struct MemoryCardGameControllerTests {
     }
 
     private func allCardsConcealed() -> Bool {
-        return controller.cards.allSatisfy({ $0.state == .concealed })
+        return gameBoard.cards.allSatisfy({ $0.state == .concealed })
     }
 
     private func numberOfRevealedCards() -> Int {
-        return controller.gameBoard.revealedCards.count
+        return gameBoard.revealedCards.count
     }
 
     private func isCardRevealed(_ card: MemoryCard) -> Bool {
-        return controller.gameBoard.revealedCards.contains(where: { $0.id == card.id })
+        return gameBoard.revealedCards.contains(where: { $0.id == card.id })
     }
 
     private func isResolvedPair(_ first: MemoryCard, _ second: MemoryCard) -> Bool {

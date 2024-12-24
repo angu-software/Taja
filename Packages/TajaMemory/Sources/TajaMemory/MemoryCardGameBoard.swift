@@ -5,7 +5,7 @@
 //  Created by Andreas Guenther on 20.12.24.
 //
 
-struct MemoryCardGameBoard {
+final class MemoryCardGameBoard {
 
     let contents: [MemoryCardContent]
 
