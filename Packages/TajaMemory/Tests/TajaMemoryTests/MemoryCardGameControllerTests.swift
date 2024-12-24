@@ -26,10 +26,6 @@ final class MemoryCardGameController {
         self.cards = cards
     }
 
-    func startNewGame() {
-
-    }
-
     func didSelectCard(_ card: MemoryCard) {
         var card = card
         revealCard(&card)
@@ -87,29 +83,21 @@ final class MemoryCardGameController {
  */
 
 @Suite
-struct MemoryCardGameControllerTests {
+final class MemoryCardGameControllerTests {
 
-    private let gameLoop: MemoryCardGameLoop
-    private let gameBoard: MemoryCardGameBoard
-    private let controller: MemoryCardGameController
+    private var controller: MemoryCardGameController!
 
     init() {
-        self.gameLoop = MemoryCardGameLoop()
-        self.gameBoard = .fixture()
-        self.controller = MemoryCardGameController(cards: gameBoard.cards)
+        startNewGame()
     }
 
     @Test(.tags(.acceptanceTest))
     func should_begin_new_game_with_all_cards_concealed() async throws {
-        startNewGame()
-
         #expect(allCardsConcealed())
     }
 
     @Test(.tags(.acceptanceTest))
     func should_reveal_first_selected_card() async throws {
-        startNewGame()
-
         let selectedCard = try #require(choseConcealedCard())
         turnCard(selectedCard)
 
@@ -119,7 +107,6 @@ struct MemoryCardGameControllerTests {
 
     @Test(.tags(.acceptanceTest))
     func should_resolve_selected_pair_of_cards_when_second_selected_card_matches_first_card() async throws {
-        startNewGame()
         let firstCard = try #require(choseConcealedCard())
         turnCard(firstCard)
 
@@ -131,7 +118,6 @@ struct MemoryCardGameControllerTests {
 
     @Test(.tags(.acceptanceTest))
     func should_reset_selected_pair_of_cards_when_second_selected_card__does_not_match_first_card() async throws {
-        startNewGame()
         let firstCard = try #require(choseConcealedCard())
         turnCard(firstCard)
 
@@ -152,7 +138,7 @@ struct MemoryCardGameControllerTests {
     }
 
     private func startNewGame() {
-        controller.startNewGame()
+        self.controller = MemoryCardGameController(cards: MemoryCardGameBoard.fixture().cards)
     }
 
     private func choseConcealedCard(_ match: CardMatcher = .any) -> MemoryCard? {
@@ -175,7 +161,7 @@ struct MemoryCardGameControllerTests {
     }
 
     private func allCardsConcealed() -> Bool {
-        return gameBoard.cards.allSatisfy({ $0.state == .concealed })
+        return controller.cards.allSatisfy({ $0.state == .concealed })
     }
 
     private func numberOfRevealedCards() -> Int {
