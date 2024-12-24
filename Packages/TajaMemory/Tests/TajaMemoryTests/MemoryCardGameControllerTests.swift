@@ -120,7 +120,7 @@ struct MemoryCardGameControllerTests {
         #expect(isCardRevealed(selectedCard))
     }
 
-    @Test
+    @Test(.tags(.acceptanceTest))
     func should_resolve_selected_pair_of_cards_when_second_selected_card_matches_first_card() async throws {
         startNewGame()
         let firstCard = try #require(choseConcealedCard())
@@ -132,7 +132,7 @@ struct MemoryCardGameControllerTests {
         #expect(isResolvedPair(firstCard, secondCard))
     }
 
-    @Test
+    @Test(.tags(.acceptanceTest))
     func should_reset_selected_pair_of_cards_when_second_selected_card__does_not_match_first_card() async throws {
         startNewGame()
         let firstCard = try #require(choseConcealedCard())
