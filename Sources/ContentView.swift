@@ -24,13 +24,12 @@ struct ContentView: View {
         GridLayout(alignment: .center,
                    horizontalSpacing: 4,
                    verticalSpacing: 4) {
-            GridRow(alignment: .center) {
-                cards[0]
-                cards[1]
-            }
-            GridRow(alignment: .center) {
-                cards[2]
-                cards[3]
+            ForEach(0..<2) { rowNumber in
+                GridRow(alignment: .center) {
+                    ForEach(0..<2) { columnNumber in
+                        cards[rowNumber + columnNumber]
+                    }
+                }
             }
         }
         .padding()
