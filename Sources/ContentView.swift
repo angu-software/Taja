@@ -11,7 +11,9 @@ import TajaMemoryUIComponents
 
 struct ContentView: View {
     var body: some View {
-        GridLayout(alignment: .center, horizontalSpacing: 4, verticalSpacing: 4) {
+        GridLayout(alignment: .center,
+                   horizontalSpacing: 4,
+                   verticalSpacing: 4) {
             GridRow(alignment: .center) {
                 MemoryCardView()
                 MemoryCardView(state: .revealed)
@@ -36,7 +38,8 @@ extension MemoryCardView {
     init(state: MemoryCard.State = .concealed) {
         self.init(frontImage: .memoryCardDuck,
                   backImage: .memoryCardBack,
-                  state: MemoryCard(state: state))
+                  state: MemoryCard(content: .init(id: "1"),
+                                    state: state))
 
     }
 }
