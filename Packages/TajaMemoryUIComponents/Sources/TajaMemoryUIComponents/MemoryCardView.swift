@@ -35,7 +35,9 @@ public struct MemoryCardView: View {
     public var body: some View {
         Image(uiImage: shownImage)
             .resizable()
+            .scaledToFill()
             .frame(width: 200, height: 200)
+            .clipped()
             .border(.black,
                     width: 1)
             .accessibilityIdentifier("memoryCard_\(state.id)_\(state.state)")
