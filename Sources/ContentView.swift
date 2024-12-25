@@ -28,7 +28,10 @@ struct ContentView: View {
             ForEach(0..<2) { rowNumber in
                 GridRow(alignment: .center) {
                     ForEach(0..<2) { columnNumber in
-                        MemoryCardView(memoryCard: memoryCards[rowNumber + columnNumber])
+                        MemoryCardView(memoryCard: memoryCards[rowNumber * 2 + columnNumber])
+                            .onTapGesture {
+                                memoryCards[rowNumber * 2 + columnNumber].reveal()
+                            }
                     }
                 }
             }

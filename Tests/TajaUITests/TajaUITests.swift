@@ -22,10 +22,11 @@ final class TajaMemoryUITests: XCTestCase {
 
     func test_should_reveal_a_card_when_tapped() throws {
         let card = try XCTUnwrap(choseConcealedCard())
+        let cardId = card.identifier
 
         tapCard(card)
 
-        XCTAssert(isCardRevealed(card))
+        XCTAssert(isCardRevealed(cardId))
     }
 
     private func startNewGame() {
@@ -44,9 +45,9 @@ final class TajaMemoryUITests: XCTestCase {
         card.tap()
     }
 
-    private func isCardRevealed(_ card: XCUIElement) -> Bool {
-        var cardId = card.identifier
+    private func isCardRevealed(_ cardId: String) -> Bool {
+        var cardId = cardId
         cardId = cardId.replacingOccurrences(of: "_concealed", with: "_revealed")
-        return app.images[cardId].exists
+        return app.images[cardId].waitForExistence(timeout: 0.3)
     }
 }
