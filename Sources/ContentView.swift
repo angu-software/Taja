@@ -12,17 +12,13 @@ import TajaMemoryUIComponents
 struct ContentView: View {
 
     @State
-    var memoryCards: [MemoryCard] = [MemoryCard(content: .init(id: "1")),
-                                     MemoryCard(content: .init(id: "1")),
-                                     MemoryCard(content: .init(id: "2")),
-                                     MemoryCard(content: .init(id: "2")),]
-    private var cards: [MemoryCardView]
+    var memoryCards: [MemoryCard]
 
-    init(cards: [MemoryCardView] = [MemoryCardView(),
-                                    MemoryCardView(),
-                                    MemoryCardView(),
-                                    MemoryCardView()]) {
-        self.cards = cards
+    init(cards: [MemoryCard] = [MemoryCard(content: .init(id: "1")),
+                                MemoryCard(content: .init(id: "1")),
+                                MemoryCard(content: .init(id: "2")),
+                                MemoryCard(content: .init(id: "2"))]) {
+        self.memoryCards = cards
     }
 
     var body: some View {
