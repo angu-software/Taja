@@ -36,9 +36,7 @@ final class TajaMemoryUITests: XCTestCase {
     }
 
     private func choseConcealedCard() -> XCUIElement? {
-        let concealedCardPredicate = NSPredicate(format: "identifier MATCHES %@", "^memoryCard_.*_concealed$")
-
-        return app.images.matching(concealedCardPredicate).firstMatch
+        return app.images["memoryCard_1_concealed"].firstMatch
     }
 
     private func tapCard(_ card: XCUIElement) {
@@ -48,6 +46,6 @@ final class TajaMemoryUITests: XCTestCase {
     private func isCardRevealed(_ cardId: String) -> Bool {
         var cardId = cardId
         cardId = cardId.replacingOccurrences(of: "_concealed", with: "_revealed")
-        return app.images[cardId].waitForExistence(timeout: 0.3)
+        return app.images[cardId].exists
     }
 }

@@ -14,10 +14,14 @@ struct ContentView: View {
     @State
     var memoryCards: [MemoryCard]
 
-    init(cards: [MemoryCard] = [MemoryCard(content: .init(id: "1")),
-                                MemoryCard(content: .init(id: "1")),
-                                MemoryCard(content: .init(id: "2")),
-                                MemoryCard(content: .init(id: "2"))]) {
+    init(cards: [MemoryCard] = [MemoryCard(id: "1",
+                                           content: .init(id: "C1")),
+                                MemoryCard(id: "2",
+                                           content: .init(id: "C1")),
+                                MemoryCard(id: "3",
+                                           content: .init(id: "C2")),
+                                MemoryCard(id: "4",
+                                           content: .init(id: "C2"))]) {
         self.memoryCards = cards
     }
 
