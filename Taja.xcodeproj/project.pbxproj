@@ -40,24 +40,14 @@
 		B341EEB12D158B7100860CC6 /* Exceptions for "Tests" folder in "Taja" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				TajaTests/TajaTests.swift,
 				TajaUITests/TajaUITests.swift,
-				TajaUITests/TajaUITestsLaunchTests.swift,
 			);
 			target = B341EBFF2D15679500860CC6 /* Taja */;
-		};
-		B341EEB22D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				TajaTests/TajaTests.swift,
-			);
-			target = B341EC102D15679900860CC6 /* TajaTests */;
 		};
 		B341EEB32D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				TajaUITests/TajaUITests.swift,
-				TajaUITests/TajaUITestsLaunchTests.swift,
 			);
 			target = B341EC1A2D15679900860CC6 /* TajaUITests */;
 		};
@@ -73,7 +63,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B341EEB12D158B7100860CC6 /* Exceptions for "Tests" folder in "Taja" target */,
-				B341EEB22D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaTests" target */,
 				B341EEB32D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaUITests" target */,
 			);
 			path = Tests;

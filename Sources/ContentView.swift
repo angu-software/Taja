@@ -10,17 +10,27 @@ import SwiftUI
 import TajaMemoryUIComponents
 
 struct ContentView: View {
+
+    private var cards: [MemoryCardView]
+
+    init(cards: [MemoryCardView] = [MemoryCardView(),
+                                    MemoryCardView(),
+                                    MemoryCardView(),
+                                    MemoryCardView()]) {
+        self.cards = cards
+    }
+
     var body: some View {
         GridLayout(alignment: .center,
                    horizontalSpacing: 4,
                    verticalSpacing: 4) {
             GridRow(alignment: .center) {
-                MemoryCardView()
-                MemoryCardView(state: .revealed)
+                cards[0]
+                cards[1]
             }
             GridRow(alignment: .center) {
-                MemoryCardView(state: .revealed)
-                MemoryCardView()
+                cards[2]
+                cards[3]
             }
         }
         .padding()
