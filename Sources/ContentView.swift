@@ -11,6 +11,11 @@ import TajaMemoryUIComponents
 
 struct ContentView: View {
 
+    @State
+    var memoryCards: [MemoryCard] = [MemoryCard(content: .init(id: "1")),
+                                     MemoryCard(content: .init(id: "1")),
+                                     MemoryCard(content: .init(id: "2")),
+                                     MemoryCard(content: .init(id: "2")),]
     private var cards: [MemoryCardView]
 
     init(cards: [MemoryCardView] = [MemoryCardView(),
@@ -27,7 +32,7 @@ struct ContentView: View {
             ForEach(0..<2) { rowNumber in
                 GridRow(alignment: .center) {
                     ForEach(0..<2) { columnNumber in
-                        cards[rowNumber + columnNumber]
+                        MemoryCardView(state: memoryCards[rowNumber + columnNumber].state)
                     }
                 }
             }
