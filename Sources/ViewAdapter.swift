@@ -17,13 +17,13 @@ final class ViewAdapter: ObservableObject {
     private let gameController: MemoryCardGameController
 
     init(cards: [MemoryCard] = [MemoryCard(id: "1",
-                                           content: .init(id: "C1")),
+                                           content: .init(id: "photo01")),
                                 MemoryCard(id: "2",
-                                           content: .init(id: "C1")),
+                                           content: .init(id: "photo01")),
                                 MemoryCard(id: "3",
-                                           content: .init(id: "C2")),
+                                           content: .init(id: "photo02")),
                                 MemoryCard(id: "4",
-                                           content: .init(id: "C2"))]) {
+                                           content: .init(id: "photo02"))]) {
         self.gameController = MemoryCardGameController(cards: cards)
         self.cards = cards
     }

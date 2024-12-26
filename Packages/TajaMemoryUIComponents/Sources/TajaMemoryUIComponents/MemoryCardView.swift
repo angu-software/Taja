@@ -38,6 +38,7 @@ public struct MemoryCardView: View {
             .scaledToFill()
             .frame(width: 200, height: 200)
             .clipped()
+            .background(.white)
             .border(.black,
                     width: 1)
             .accessibilityIdentifier("memoryCard_\(state.id)_\(state.state)")

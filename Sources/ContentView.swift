@@ -50,7 +50,7 @@ import TajaMemory
 extension MemoryCardView {
 
     init(memoryCard: MemoryCard) {
-        self.init(frontImage: .memoryCardDuck,
+        self.init(frontImage: .photo01,
                   backImage: .memoryCardBack,
                   state: memoryCard)
     }
