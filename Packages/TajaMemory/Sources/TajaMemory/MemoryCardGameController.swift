@@ -5,22 +5,22 @@
 //  Created by Andreas Guenther on 24.12.24.
 //
 
-final class MemoryCardGameController {
+public final class MemoryCardGameController {
 
     var revealedCards: [MemoryCard] {
         return cards.filter({ $0.state == .revealed })
     }
 
-    private(set) var cards: [MemoryCard]
+    public private(set) var cards: [MemoryCard]
     private(set) var resolvedPairs: [MemoryCardPair] = []
 
     private var firstCard: MemoryCard?
 
-    init(cards: [MemoryCard]) {
+    public init(cards: [MemoryCard]) {
         self.cards = cards
     }
 
-    func didSelectCard(_ card: MemoryCard) {
+    public func didSelectCard(_ card: MemoryCard) {
         var card = card
         revealCard(&card)
 
