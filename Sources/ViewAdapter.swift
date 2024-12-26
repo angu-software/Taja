@@ -24,6 +24,9 @@ final class ViewAdapter: ObservableObject {
                                            content: .init(id: "photo02")),
                                 MemoryCard(id: "4",
                                            content: .init(id: "photo02"))]) {
+        var cards = cards
+        cards.shuffle()
+
         self.gameController = MemoryCardGameController(cards: cards)
         self.cards = cards
     }
