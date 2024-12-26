@@ -50,6 +50,13 @@
 			);
 			target = B341EC1A2D15679900860CC6 /* TajaUITests */;
 		};
+		B3558C342D1D5636002D6E9D /* Exceptions for "Tests" folder in "TajaTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TajaTests/TajaTest.swift,
+			);
+			target = B341EC102D15679900860CC6 /* TajaTests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -62,6 +69,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B341EEB12D158B7100860CC6 /* Exceptions for "Tests" folder in "Taja" target */,
+				B3558C342D1D5636002D6E9D /* Exceptions for "Tests" folder in "TajaTests" target */,
 				B341EEB32D158B7100860CC6 /* Exceptions for "Tests" folder in "TajaUITests" target */,
 			);
 			path = Tests;
@@ -212,6 +220,7 @@
 					};
 					B341EC102D15679900860CC6 = {
 						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
 						TestTargetID = B341EBFF2D15679500860CC6;
 					};
 					B341EC1A2D15679900860CC6 = {
@@ -488,6 +497,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94RX8Q59P5;
@@ -499,6 +509,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Taja.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Taja";
@@ -509,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 94RX8Q59P5;

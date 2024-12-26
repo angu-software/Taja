@@ -11,18 +11,15 @@ import TajaMemoryUIComponents
 
 struct ContentView: View {
 
-    @State
-    var memoryCards: [MemoryCard]
+    @ObservedObject
+    private var viewAdapter: ViewAdapter
 
-    init(cards: [MemoryCard] = [MemoryCard(id: "1",
-                                           content: .init(id: "C1")),
-                                MemoryCard(id: "2",
-                                           content: .init(id: "C1")),
-                                MemoryCard(id: "3",
-                                           content: .init(id: "C2")),
-                                MemoryCard(id: "4",
-                                           content: .init(id: "C2"))]) {
-        self.memoryCards = cards
+    var memoryCards: [MemoryCard] {
+        return viewAdapter.cards
+    }
+
+    init() {
+        self.viewAdapter = ViewAdapter()
     }
 
     var body: some View {
@@ -34,7 +31,7 @@ struct ContentView: View {
                     ForEach(0..<2) { columnNumber in
                         MemoryCardView(memoryCard: memoryCards[rowNumber * 2 + columnNumber])
                             .onTapGesture {
-                                memoryCards[rowNumber * 2 + columnNumber].reveal()
+                                viewAdapter.didTapCard(memoryCards[rowNumber * 2 + columnNumber])
                             }
                     }
                 }
