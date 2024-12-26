@@ -13,7 +13,7 @@ public struct MemoryCard: Equatable, Identifiable {
     public let id: String
     public var state: State
 
-    let content: MemoryCardContent
+    public let content: MemoryCardContent
 
     public init(id: String = UUID().uuidString,
                 content: MemoryCardContent,

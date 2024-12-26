@@ -50,7 +50,9 @@ import TajaMemory
 extension MemoryCardView {
 
     init(memoryCard: MemoryCard) {
-        self.init(frontImage: .photo01,
+        let frontImage = UIImage(named: memoryCard.content.id)!
+
+        self.init(frontImage: frontImage,
                   backImage: .memoryCardBack,
                   state: memoryCard)
     }
