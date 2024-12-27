@@ -32,7 +32,7 @@ public final class MemoryCardGameController {
     public init(cards: [MemoryCard]) {
         self.cards = cards
 
-        gameLoop.stateDidChange = { [weak self] in
+        gameLoop.stateDidChange = { @MainActor [weak self] in
             guard let self else {
                 return
             }
@@ -66,15 +66,22 @@ public final class MemoryCardGameController {
     }
 
     public func didSelectCard(_ card: MemoryCard) {
+        selectedCards.append(card)
+
         switch gameLoop.state {
-        case .selectFirstCard,
-             .selectSecondCard:
+        case .selectFirstCard:
+            if let card = selectedCards.first {
+                revealCard(card)
 
-            revealCard(card)
+                gameLoop.advance()
+            }
+        case .selectSecondCard:
+            if selectedCards.indices.contains(1) {
+                let card = selectedCards[1]
+                revealCard(card)
 
-            selectedCards.append(card)
-
-            gameLoop.advance()
+                gameLoop.advance()
+            }
         default:
             break
         }
