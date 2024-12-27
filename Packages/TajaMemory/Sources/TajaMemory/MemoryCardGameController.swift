@@ -17,6 +17,18 @@ public final class MemoryCardGameController {
     private let gameLoop = MemoryCardGameLoop()
     private var selectedCards: [MemoryCard] = []
 
+    private var firstCard: MemoryCard? {
+        return selectedCards.first
+    }
+
+    private var secondCard: MemoryCard? {
+        guard selectedCards.indices.contains(1) else {
+            return nil
+        }
+
+        return selectedCards[1]
+    }
+
     private var selectedPair: MemoryCardPair? {
         guard selectedCards.indices.contains(0),
               selectedCards.indices.contains(1) else {
@@ -47,61 +59,60 @@ public final class MemoryCardGameController {
     private func runGameLoop() {
         switch self.gameLoop.state {
         case .selectFirstCard:
-            if let card = selectedCards.first {
-                revealCard(card)
-
-                gameLoop.advance()
-            }
+            revealCard(firstCard)
         case .selectSecondCard:
-            if selectedCards.indices.contains(1) {
-                let card = selectedCards[1]
-                revealCard(card)
-
-                gameLoop.advance()
-            }
+            revealCard(secondCard)
         case .evaluateSelectedPair:
-            if let selectedPair = self.selectedPair {
-                if selectedPair.isResolved {
-                    gameLoop.advance(.pairIsMatching)
-                } else {
-                    gameLoop.advance(.pairNotMatching)
-                }
-            }
+            evaluate(selectedPair)
         case .resolvePair:
-            if let selectedPair = self.selectedPair {
-                resolvePair(selectedPair)
-                gameLoop.advance()
-            }
+            resolvePair(selectedPair)
         case .concealPair:
-            if let selectedPair = self.selectedPair {
-                concealPair(selectedPair)
-                gameLoop.advance()
-            }
+            concealPair(selectedPair)
         }
     }
 
-    private func revealCard(_ card: MemoryCard) {
-        guard let cardIndex = index(of: card) else {
+    private func revealCard(_ card: MemoryCard?) {
+        guard let card,
+              let cardIndex = index(of: card) else {
             return
         }
 
         cards[cardIndex].reveal()
+        gameLoop.advance()
     }
 
-    private func restSelectedCards() {
-        selectedCards = []
+    private func evaluate(_ selectedPair: MemoryCardPair?) {
+        guard let selectedPair else {
+            return
+        }
+
+        if selectedPair.isResolved {
+            gameLoop.advance(.pairIsMatching)
+        } else {
+            gameLoop.advance(.pairNotMatching)
+        }
     }
 
-    private func resolvePair(_ selectedPair: MemoryCardPair) {
+    private func resolvePair(_ selectedPair: MemoryCardPair?) {
+        guard let selectedPair else {
+            return
+        }
+
         resolvedPairs.append(selectedPair)
         restSelectedCards()
+        gameLoop.advance()
     }
 
-    private func concealPair(_ selectedPair: MemoryCardPair) {
+    private func concealPair(_ selectedPair: MemoryCardPair?) {
+        guard let selectedPair else {
+            return
+        }
+
         concealCard(selectedPair.one)
         concealCard(selectedPair.two)
 
         restSelectedCards()
+        gameLoop.advance()
     }
 
     private func concealCard(_ card: MemoryCard) {
@@ -110,6 +121,10 @@ public final class MemoryCardGameController {
         }
 
         cards[cardIndex].conceal()
+    }
+
+    private func restSelectedCards() {
+        selectedCards = []
     }
 
     private func index(of card: MemoryCard) -> Int? {
