@@ -10,6 +10,7 @@ final class MemoryCardGameLoop {
     enum State {
         case selectFirstCard
         case selectSecondCard
+        case showCards
         case evaluateSelectedPair
         case resolvePair
         case concealPair
@@ -37,6 +38,8 @@ final class MemoryCardGameLoop {
         case .selectFirstCard:
             state = .selectSecondCard
         case .selectSecondCard:
+            state = .showCards
+        case .showCards:
             state = .evaluateSelectedPair
         case .evaluateSelectedPair where evaluationResult == .pairIsMatching:
             state = .resolvePair

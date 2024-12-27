@@ -62,6 +62,8 @@ public final class MemoryCardGameController {
             revealCard(firstCard)
         case .selectSecondCard:
             revealCard(secondCard)
+        case .showCards:
+            advanceGame()
         case .evaluateSelectedPair:
             evaluate(selectedPair)
         case .resolvePair:

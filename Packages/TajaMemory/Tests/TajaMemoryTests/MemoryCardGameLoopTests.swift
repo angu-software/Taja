@@ -28,8 +28,17 @@ struct MemoryCardGameLoopTests {
     }
 
     @Test
-    func should_advance_from_select_second_card_to_evaluate_selected_pair() async throws {
+    func should_advance_from_select_second_card_to_show_cards() async throws {
         let loop = MemoryCardGameLoop(state: .selectSecondCard)
+
+        loop.advance()
+
+        #expect(loop.state == .showCards)
+    }
+
+    @Test
+    func should_advance_from_show_cards_to_evaluate_selected_pair() async throws {
+        let loop = MemoryCardGameLoop(state: .showCards)
 
         loop.advance()
 
