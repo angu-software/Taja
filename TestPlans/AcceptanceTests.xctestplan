@@ -1,0 +1,43 @@
+{
+  "configurations" : [
+    {
+      "id" : "25B9925B-C82C-4F8D-A6A7-CA2FFBB72886",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "selectedTags" : {
+        "includeXCTests" : true,
+        "tags" : [
+          ".acceptanceTest"
+        ]
+      },
+      "target" : {
+        "containerPath" : "container:Packages\/TajaMemory",
+        "identifier" : "TajaMemoryTests",
+        "name" : "TajaMemoryTests"
+      }
+    },
+    {
+      "selectedTags" : {
+        "includeXCTests" : true,
+        "tags" : [
+          ".acceptanceTest"
+        ]
+      },
+      "target" : {
+        "containerPath" : "container:Taja.xcodeproj",
+        "identifier" : "B341EC1A2D15679900860CC6",
+        "name" : "TajaUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

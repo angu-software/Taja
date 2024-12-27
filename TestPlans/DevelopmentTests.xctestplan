@@ -18,20 +18,6 @@
         "identifier" : "TajaMemoryTests",
         "name" : "TajaMemoryTests"
       }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Taja.xcodeproj",
-        "identifier" : "B341EC102D15679900860CC6",
-        "name" : "TajaTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Packages\/TajaMemoryUIComponents",
-        "identifier" : "TajaMemoryUIComponentsTests",
-        "name" : "TajaMemoryUIComponentsTests"
-      }
     }
   ],
   "version" : 1
