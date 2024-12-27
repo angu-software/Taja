@@ -14,7 +14,15 @@ public final class MemoryCardGameController {
         return cards.filter({ $0.state == .revealed })
     }
 
-    public private(set) var cards: [MemoryCard]
+    public var cardsDidChange: (() -> Void)?
+    public private(set) var cards: [MemoryCard] {
+        didSet {
+            if cards != oldValue {
+                cardsDidChange?()
+            }
+        }
+    }
+
     private(set) var resolvedPairs: [MemoryCardPair] = []
 
     private let gameLoop = MemoryCardGameLoop()
