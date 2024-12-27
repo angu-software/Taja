@@ -5,6 +5,8 @@
 //  Created by Andreas Guenther on 24.12.24.
 //
 
+import Foundation
+
 public final class MemoryCardGameController {
 
     var revealedCards: [MemoryCard] {
@@ -63,7 +65,7 @@ public final class MemoryCardGameController {
         case .selectSecondCard:
             revealCard(secondCard)
         case .showCards:
-            advanceGame()
+            advanceGame(after: 1)
         case .evaluateSelectedPair:
             evaluate(selectedPair)
         case .resolvePair:
@@ -89,6 +91,10 @@ public final class MemoryCardGameController {
         }
 
         advanceGame(selectedPair.state)
+    }
+
+    private func advanceGame(after duration: TimeInterval) {
+        advanceGame()
     }
 
     private func advanceGame(_ evaluationResult: MemoryCardGameLoop.EvaluationResult? = nil) {
