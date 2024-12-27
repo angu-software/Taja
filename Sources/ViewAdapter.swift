@@ -13,18 +13,11 @@ import TajaMemory
 final class ViewAdapter: ObservableObject {
 
     static func makeMemoryCards() -> [MemoryCard] {
-        var cards = [MemoryCard(id: "1",
-                           content: .init(id: "photo01")),
-                MemoryCard(id: "2",
-                           content: .init(id: "photo01")),
-                MemoryCard(id: "3",
-                           content: .init(id: "photo02")),
-                MemoryCard(id: "4",
-                           content: .init(id: "photo02"))]
+        return CardGenerator.makeMemoryCards()
+            .prefix(4)
+            .map({ $0 })
+            .shuffled()
 
-        cards.shuffle()
-
-        return cards
     }
 
     @Published

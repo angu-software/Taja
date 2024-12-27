@@ -21,8 +21,6 @@ final class CardGenerator {
             }
         }
 
-        cards.shuffle()
-
         return cards
     }
 }
