@@ -12,22 +12,27 @@ import TajaMemory
 @MainActor
 final class ViewAdapter: ObservableObject {
 
+    static func makeMemoryCards() -> [MemoryCard] {
+        var cards = [MemoryCard(id: "1",
+                           content: .init(id: "photo01")),
+                MemoryCard(id: "2",
+                           content: .init(id: "photo01")),
+                MemoryCard(id: "3",
+                           content: .init(id: "photo02")),
+                MemoryCard(id: "4",
+                           content: .init(id: "photo02"))]
+
+        cards.shuffle()
+
+        return cards
+    }
+
     @Published
     private(set) var cards: [MemoryCard] = []
 
     private var gameController: MemoryCardGameController
 
-    init(cards: [MemoryCard] = [MemoryCard(id: "1",
-                                           content: .init(id: "photo01")),
-                                MemoryCard(id: "2",
-                                           content: .init(id: "photo01")),
-                                MemoryCard(id: "3",
-                                           content: .init(id: "photo02")),
-                                MemoryCard(id: "4",
-                                           content: .init(id: "photo02"))]) {
-        var cards = cards
-        cards.shuffle()
-
+    init(cards: [MemoryCard] = makeMemoryCards()) {
         self.gameController = MemoryCardGameController(cards: cards)
         self.cards = cards
 
@@ -35,15 +40,7 @@ final class ViewAdapter: ObservableObject {
     }
 
     func startNewGame() {
-        var cards = [MemoryCard(id: "1",
-                                content: .init(id: "photo01")),
-                     MemoryCard(id: "2",
-                                content: .init(id: "photo01")),
-                     MemoryCard(id: "3",
-                                content: .init(id: "photo02")),
-                     MemoryCard(id: "4",
-                                content: .init(id: "photo02"))]
-        cards.shuffle()
+        let cards = Self.makeMemoryCards()
 
         self.gameController = MemoryCardGameController(cards: cards)
         self.cards = cards

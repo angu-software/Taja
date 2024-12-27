@@ -9,13 +9,14 @@
     }
   ],
   "defaultOptions" : {
+    "language" : "en",
+    "region" : "US",
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
     {
       "selectedTags" : {
         "includeXCTests" : true,
-        "mode" : "or",
         "tags" : [
           ".acceptanceTest"
         ]
@@ -29,7 +30,6 @@
     {
       "selectedTags" : {
         "includeXCTests" : true,
-        "mode" : "or",
         "tags" : [
           ".acceptanceTest"
         ]
@@ -43,7 +43,6 @@
     {
       "selectedTags" : {
         "includeXCTests" : true,
-        "mode" : "or",
         "tags" : [
           ".acceptanceTest"
         ]
