@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B339AC822D1F2E45001EA7F8 /* TestingTags in Frameworks */ = {isa = PBXBuildFile; productRef = B339AC812D1F2E45001EA7F8 /* TestingTags */; };
 		B341EEB92D158FC600860CC6 /* TajaMemory in Frameworks */ = {isa = PBXBuildFile; productRef = B341EEB82D158FC600860CC6 /* TajaMemory */; };
 		B341EEBC2D158FD600860CC6 /* TajaMemoryUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = B341EEBB2D158FD600860CC6 /* TajaMemoryUIComponents */; };
 /* End PBXBuildFile section */
@@ -39,7 +40,7 @@
 		B341EEB12D158B7100860CC6 /* Exceptions for "Tests" folder in "Taja" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				TajaTests/TajaTest.swift,
+				TajaTests/PhotoAssetsTests.swift,
 				TajaUITests/TajaUITests.swift,
 			);
 			target = B341EBFF2D15679500860CC6 /* Taja */;
@@ -54,7 +55,7 @@
 		B3558C342D1D5636002D6E9D /* Exceptions for "Tests" folder in "TajaTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				TajaTests/TajaTest.swift,
+				TajaTests/PhotoAssetsTests.swift,
 			);
 			target = B341EC102D15679900860CC6 /* TajaTests */;
 		};
@@ -107,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B339AC822D1F2E45001EA7F8 /* TestingTags in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +190,7 @@
 			);
 			name = TajaTests;
 			packageProductDependencies = (
+				B339AC812D1F2E45001EA7F8 /* TestingTags */,
 			);
 			productName = TajaTests;
 			productReference = B341EC112D15679900860CC6 /* TajaTests.xctest */;
@@ -249,6 +252,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				B341EEBA2D158FD600860CC6 /* XCLocalSwiftPackageReference "Packages/TajaMemoryUIComponents" */,
+				B339AC802D1F2E45001EA7F8 /* XCLocalSwiftPackageReference "Packages/TestingTags" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B341EC012D15679500860CC6 /* Products */;
@@ -641,6 +645,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		B339AC802D1F2E45001EA7F8 /* XCLocalSwiftPackageReference "Packages/TestingTags" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/TestingTags;
+		};
 		B341EEBA2D158FD600860CC6 /* XCLocalSwiftPackageReference "Packages/TajaMemoryUIComponents" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/TajaMemoryUIComponents;
@@ -648,6 +656,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B339AC812D1F2E45001EA7F8 /* TestingTags */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TestingTags;
+		};
 		B341EEB82D158FC600860CC6 /* TajaMemory */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TajaMemory;

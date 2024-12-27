@@ -15,6 +15,7 @@
     {
       "selectedTags" : {
         "includeXCTests" : true,
+        "mode" : "or",
         "tags" : [
           ".acceptanceTest"
         ]
@@ -28,6 +29,21 @@
     {
       "selectedTags" : {
         "includeXCTests" : true,
+        "mode" : "or",
+        "tags" : [
+          ".acceptanceTest"
+        ]
+      },
+      "target" : {
+        "containerPath" : "container:Taja.xcodeproj",
+        "identifier" : "B341EC102D15679900860CC6",
+        "name" : "TajaTests"
+      }
+    },
+    {
+      "selectedTags" : {
+        "includeXCTests" : true,
+        "mode" : "or",
         "tags" : [
           ".acceptanceTest"
         ]
