@@ -84,4 +84,13 @@ struct MemoryCardGameLoopTests {
 
         #expect(stateChanged == true)
     }
+
+    @Test
+    func should_not_advance_from_evaluate_selected_pair_when_not_given_evaluation_result() async throws {
+        let loop = MemoryCardGameLoop(state: .evaluateSelectedPair)
+
+        loop.advance()
+
+        #expect(loop.state == .evaluateSelectedPair)
+    }
 }

@@ -40,11 +40,13 @@ final class MemoryCardGameLoop {
             state = .evaluateSelectedPair
         case .evaluateSelectedPair where evaluationResult == .pairIsMatching:
             state = .resolvePair
-        case .evaluateSelectedPair:
+        case .evaluateSelectedPair where evaluationResult == .pairNotMatching:
             state = .concealPair
         case .resolvePair,
              .concealPair:
             state = .selectFirstCard
+        default:
+            break
         }
     }
 }
