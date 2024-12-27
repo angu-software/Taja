@@ -78,7 +78,7 @@ public final class MemoryCardGameController {
         }
 
         cards[cardIndex].reveal()
-        gameLoop.advance()
+        advanceGame()
     }
 
     private func evaluate(_ selectedPair: MemoryCardPair?) {
@@ -86,13 +86,13 @@ public final class MemoryCardGameController {
             return
         }
 
-        if selectedPair.isResolved {
-            gameLoop.advance(.pairIsMatching)
-        } else {
-            gameLoop.advance(.pairNotMatching)
-        }
+        advanceGame(selectedPair.state)
     }
 
+    private func advanceGame(_ evaluationResult: MemoryCardGameLoop.EvaluationResult? = nil) {
+        gameLoop.advance(evaluationResult)
+    }
+    
     private func resolvePair(_ selectedPair: MemoryCardPair?) {
         guard let selectedPair else {
             return
@@ -100,7 +100,7 @@ public final class MemoryCardGameController {
 
         resolvedPairs.append(selectedPair)
         restSelectedCards()
-        gameLoop.advance()
+        advanceGame()
     }
 
     private func concealPair(_ selectedPair: MemoryCardPair?) {
@@ -112,7 +112,7 @@ public final class MemoryCardGameController {
         concealCard(selectedPair.two)
 
         restSelectedCards()
-        gameLoop.advance()
+        advanceGame()
     }
 
     private func concealCard(_ card: MemoryCard) {
@@ -129,5 +129,14 @@ public final class MemoryCardGameController {
 
     private func index(of card: MemoryCard) -> Int? {
         return cards.firstIndex(where: { $0.id == card.id })
+    }
+}
+
+extension MemoryCardPair {
+
+    typealias State = MemoryCardGameLoop.EvaluationResult
+
+    var state: State {
+        return isResolved ? .pairIsMatching : .pairNotMatching
     }
 }
