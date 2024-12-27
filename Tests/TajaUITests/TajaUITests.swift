@@ -29,6 +29,8 @@ final class TajaMemoryUITests: XCTestCase {
         XCTAssert(isCardRevealed(cardId))
     }
 
+    // TODO: should conceal not matching cards
+
     private func startNewGame() {
         app.launch()
         _ = app.wait(for: .runningForeground,

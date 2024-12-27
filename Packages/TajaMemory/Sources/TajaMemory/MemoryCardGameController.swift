@@ -18,6 +18,7 @@ public final class MemoryCardGameController {
     private(set) var resolvedPairs: [MemoryCardPair] = []
 
     private let gameLoop = MemoryCardGameLoop()
+    private let lookingOnCardsDuration: TimeInterval
     private var selectedCards: [MemoryCard] = []
 
     private var firstCard: MemoryCard? {
@@ -42,8 +43,9 @@ public final class MemoryCardGameController {
                               selectedCards[1])
     }
 
-    public init(cards: [MemoryCard]) {
+    public init(cards: [MemoryCard], lookingOnCardsDuration: TimeInterval = 1) {
         self.cards = cards
+        self.lookingOnCardsDuration = lookingOnCardsDuration
 
         observeGameLoop()
     }
@@ -95,7 +97,12 @@ public final class MemoryCardGameController {
     }
 
     private func advanceGame(after duration: TimeInterval) {
-        advanceGame()
+        Task {
+            try await Task.sleep(for: .seconds(lookingOnCardsDuration))
+            await MainActor.run {
+                self.advanceGame()
+            }
+        }
     }
 
     private func advanceGame(_ evaluationResult: MemoryCardGameLoop.EvaluationResult? = nil) {

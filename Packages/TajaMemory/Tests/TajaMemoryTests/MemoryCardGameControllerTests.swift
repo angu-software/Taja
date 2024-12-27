@@ -55,6 +55,8 @@ final class MemoryCardGameControllerTests {
         let secondCard = try #require(choseConcealedCard(.matching(firstCard)))
         turnCard(secondCard)
 
+        try await lookAtCards()
+
         #expect(isResolvedPair(firstCard, secondCard))
     }
 
@@ -65,6 +67,8 @@ final class MemoryCardGameControllerTests {
 
         let secondCard = try #require(choseConcealedCard(.notMatching(firstCard)))
         turnCard(secondCard)
+
+        try await lookAtCards()
 
         #expect(!isResolvedPair(firstCard, secondCard))
         #expect(!isCardRevealed(firstCard))
@@ -80,7 +84,8 @@ final class MemoryCardGameControllerTests {
     }
 
     private func startNewGame() {
-        self.controller = MemoryCardGameController(cards: MemoryCardGameBoard.fixture().cards)
+        self.controller = MemoryCardGameController(cards: MemoryCardGameBoard.fixture().cards,
+                                                   lookingOnCardsDuration: 0.0)
     }
 
     private func choseConcealedCard(_ match: CardMatcher = .any) -> MemoryCard? {
@@ -100,6 +105,10 @@ final class MemoryCardGameControllerTests {
 
     private func turnCard(_ card: MemoryCard) {
         controller.didSelectCard(card)
+    }
+
+    private func lookAtCards() async throws {
+        try await Task.sleep(for: .milliseconds(1))
     }
 
     private func allCardsConcealed() -> Bool {
