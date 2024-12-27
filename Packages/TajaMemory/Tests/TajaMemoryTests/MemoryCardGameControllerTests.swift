@@ -23,7 +23,6 @@ import TestingTags
  * When all cards revealed -> game ends
  */
 
-@MainActor
 @Suite
 final class MemoryCardGameControllerTests {
 

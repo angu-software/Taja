@@ -5,7 +5,6 @@
 //  Created by Andreas Guenther on 24.12.24.
 //
 
-@MainActor
 public final class MemoryCardGameController {
 
     var revealedCards: [MemoryCard] {
@@ -16,7 +15,6 @@ public final class MemoryCardGameController {
     private(set) var resolvedPairs: [MemoryCardPair] = []
 
     private let gameLoop = MemoryCardGameLoop()
-    private var firstCard: MemoryCard?
     private var selectedCards: [MemoryCard] = []
 
     private var selectedPair: MemoryCardPair? {
@@ -32,43 +30,22 @@ public final class MemoryCardGameController {
     public init(cards: [MemoryCard]) {
         self.cards = cards
 
-        gameLoop.stateDidChange = { @MainActor [weak self] in
-            guard let self else {
-                return
-            }
-
-            switch self.gameLoop.state {
-            case .selectFirstCard,
-                .selectSecondCard:
-                break
-            case .evaluateSelectedPair:
-                if let selectedPair = self.selectedPair {
-                    if selectedPair.isResolved {
-                        gameLoop.advance(.pairIsMatching)
-                    } else {
-                        gameLoop.advance(.pairNotMatching)
-                    }
-                }
-            case .resolvePair:
-                if let selectedPair = self.selectedPair {
-                    resolvedPairs.append(selectedPair)
-                    gameLoop.advance()
-                }
-                self.selectedCards = []
-            case .concealPair:
-                if let selectedPair = self.selectedPair {
-                    concealPair(selectedPair)
-                    gameLoop.advance()
-                }
-                self.selectedCards = []
-            }
-        }
+        observeGameLoop()
     }
 
     public func didSelectCard(_ card: MemoryCard) {
         selectedCards.append(card)
+        runGameLoop()
+    }
 
-        switch gameLoop.state {
+    private func observeGameLoop() {
+        gameLoop.stateDidChange = { [weak self] in
+            self?.runGameLoop()
+        }
+    }
+
+    private func runGameLoop() {
+        switch self.gameLoop.state {
         case .selectFirstCard:
             if let card = selectedCards.first {
                 revealCard(card)
@@ -82,8 +59,24 @@ public final class MemoryCardGameController {
 
                 gameLoop.advance()
             }
-        default:
-            break
+        case .evaluateSelectedPair:
+            if let selectedPair = self.selectedPair {
+                if selectedPair.isResolved {
+                    gameLoop.advance(.pairIsMatching)
+                } else {
+                    gameLoop.advance(.pairNotMatching)
+                }
+            }
+        case .resolvePair:
+            if let selectedPair = self.selectedPair {
+                resolvePair(selectedPair)
+                gameLoop.advance()
+            }
+        case .concealPair:
+            if let selectedPair = self.selectedPair {
+                concealPair(selectedPair)
+                gameLoop.advance()
+            }
         }
     }
 
@@ -95,9 +88,20 @@ public final class MemoryCardGameController {
         cards[cardIndex].reveal()
     }
 
+    private func restSelectedCards() {
+        selectedCards = []
+    }
+
+    private func resolvePair(_ selectedPair: MemoryCardPair) {
+        resolvedPairs.append(selectedPair)
+        restSelectedCards()
+    }
+
     private func concealPair(_ selectedPair: MemoryCardPair) {
         concealCard(selectedPair.one)
         concealCard(selectedPair.two)
+
+        restSelectedCards()
     }
 
     private func concealCard(_ card: MemoryCard) {
