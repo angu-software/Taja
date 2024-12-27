@@ -40,6 +40,7 @@
 		B341EEB12D158B7100860CC6 /* Exceptions for "Tests" folder in "Taja" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				TajaTests/CardGeneratorTests.swift,
 				TajaTests/PhotoAssetsTests.swift,
 				TajaUITests/TajaUITests.swift,
 			);
@@ -55,6 +56,7 @@
 		B3558C342D1D5636002D6E9D /* Exceptions for "Tests" folder in "TajaTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				TajaTests/CardGeneratorTests.swift,
 				TajaTests/PhotoAssetsTests.swift,
 			);
 			target = B341EC102D15679900860CC6 /* TajaTests */;
