@@ -8,8 +8,14 @@
 
 struct MemoryCardPair {
 
+    typealias State = MemoryCardGameLoop.EvaluationResult
+
     let one: MemoryCard
     let two: MemoryCard
+
+    var state: State {
+        return isResolved ? .pairIsMatching : .pairNotMatching
+    }
 
     var isResolved: Bool {
         return isContainingDifferentCards && isContainingMatchingContent

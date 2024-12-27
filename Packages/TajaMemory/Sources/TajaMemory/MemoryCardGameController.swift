@@ -131,12 +131,3 @@ public final class MemoryCardGameController {
         return cards.firstIndex(where: { $0.id == card.id })
     }
 }
-
-extension MemoryCardPair {
-
-    typealias State = MemoryCardGameLoop.EvaluationResult
-
-    var state: State {
-        return isResolved ? .pairIsMatching : .pairNotMatching
-    }
-}
