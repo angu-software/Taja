@@ -5,6 +5,7 @@
 //  Created by Andreas Guenther on 24.12.24.
 //
 
+@MainActor
 public final class MemoryCardGameController {
 
     var revealedCards: [MemoryCard] {

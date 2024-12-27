@@ -9,6 +9,7 @@ import SwiftUI
 
 import TajaMemory
 
+@MainActor
 final class ViewAdapter: ObservableObject {
 
     @Published
