@@ -30,6 +30,10 @@ public struct MemoryCardView: View {
         self.state = state
     }
 
+    private func makeA11yId() -> String {
+        return "memoryCard_\(state.id)_\(state.state)_\(state.content.id)"
+    }
+
     // MARK: - SwiftUI-View
 
     public var body: some View {
@@ -41,6 +45,6 @@ public struct MemoryCardView: View {
             .background(.white)
             .border(.black,
                     width: 1)
-            .accessibilityIdentifier("memoryCard_\(state.id)_\(state.state)")
+            .accessibilityIdentifier(makeA11yId())
     }
 }

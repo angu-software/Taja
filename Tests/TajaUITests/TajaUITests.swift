@@ -38,7 +38,7 @@ final class TajaMemoryUITests: XCTestCase {
     }
 
     private func choseConcealedCard() -> XCUIElement? {
-        return app.images["memoryCard_1_concealed"].firstMatch
+        return app.images["memoryCard_1_concealed_photo01"].firstMatch
     }
 
     private func tapCard(_ card: XCUIElement) {
