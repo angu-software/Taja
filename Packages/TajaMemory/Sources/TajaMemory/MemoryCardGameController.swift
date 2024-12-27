@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 public final class MemoryCardGameController {
 
     var revealedCards: [MemoryCard] {
