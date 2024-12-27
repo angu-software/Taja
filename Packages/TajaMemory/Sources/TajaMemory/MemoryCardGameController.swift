@@ -27,28 +27,19 @@ public final class MemoryCardGameController {
 
     private let gameLoop = MemoryCardGameLoop()
     private let lookingOnCardsDuration: TimeInterval
-    private var selectedCards: [MemoryCard] = []
 
-    private var firstCard: MemoryCard? {
-        return selectedCards.first
-    }
-
-    private var secondCard: MemoryCard? {
-        guard selectedCards.indices.contains(1) else {
-            return nil
-        }
-
-        return selectedCards[1]
-    }
+    private var firstCard: MemoryCard?
+    private var secondCard: MemoryCard?
+    private var isShowingCards = false
 
     private var selectedPair: MemoryCardPair? {
-        guard selectedCards.indices.contains(0),
-              selectedCards.indices.contains(1) else {
+        guard let firstCard,
+              let secondCard else {
             return nil
         }
 
-        return MemoryCardPair(selectedCards[0],
-                              selectedCards[1])
+        return MemoryCardPair(firstCard,
+                              secondCard)
     }
 
     public init(cards: [MemoryCard], lookingOnCardsDuration: TimeInterval = 1) {
@@ -69,7 +60,11 @@ public final class MemoryCardGameController {
             return
         }
 
-        selectedCards.append(card)
+        if gameLoop.state == .selectFirstCard {
+            firstCard = card
+        } else if gameLoop.state == .selectSecondCard {
+            secondCard = card
+        }
     }
 
     private func observeGameLoop() {
@@ -84,8 +79,10 @@ public final class MemoryCardGameController {
             revealCard(firstCard)
         case .selectSecondCard:
             revealCard(secondCard)
+        case .showCards where isShowingCards == false:
+            advanceGame(after: lookingOnCardsDuration)
         case .showCards:
-            advanceGame(after: 1)
+            break
         case .evaluateSelectedPair:
             evaluate(selectedPair)
         case .resolvePair:
@@ -114,11 +111,11 @@ public final class MemoryCardGameController {
     }
 
     private func advanceGame(after duration: TimeInterval) {
-        Task {
-            try await Task.sleep(for: .seconds(lookingOnCardsDuration))
-            await MainActor.run {
-                self.advanceGame()
-            }
+        Task { @MainActor in
+            isShowingCards = true
+            try await Task.sleep(for: .seconds(duration))
+            self.advanceGame()
+            isShowingCards = false
         }
     }
 
@@ -157,7 +154,8 @@ public final class MemoryCardGameController {
     }
 
     private func restSelectedCards() {
-        selectedCards = []
+        firstCard = nil
+        secondCard = nil
     }
 
     private func index(of card: MemoryCard) -> Int? {
