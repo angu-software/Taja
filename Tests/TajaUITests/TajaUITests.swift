@@ -14,13 +14,12 @@ final class TajaMemoryUITests: XCTestCase {
 
     private let app = XCUIApplication()
 
+    @MainActor
     override func setUp() async throws {
-        try await super.setUp()
-
         startApp()
     }
 
-    func test_should_reveal_a_card_when_tapped() throws {
+    func test_should_reveal_a_card_when_tapped() async throws {
         let card = choseConcealedCard()
         let cardId = card.identifier
 
@@ -44,7 +43,7 @@ final class TajaMemoryUITests: XCTestCase {
         XCTAssert(isCardConcealed(secondCardId))
     }
 
-    func test_should_start_new_game() {
+    func test_should_start_new_game() async throws {
         let firstCard = chooseCard("memoryCard_1_concealed_photo01")
         tapCard(firstCard)
 
@@ -61,7 +60,7 @@ final class TajaMemoryUITests: XCTestCase {
     }
 
     private func startNewGame() {
-        let startNewGameButton = app.buttons["Neues Spiel"]
+        let startNewGameButton = app.buttons["New Game"]
         startNewGameButton.tap()
     }
 

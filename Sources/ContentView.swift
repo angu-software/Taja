@@ -42,7 +42,7 @@ struct ContentView: View {
                            Button(action: {
                                viewAdapter.startNewGame()
                            }) {
-                               Text("Neues Spiel")
+                               Text("New Game")
                            }
                        }
                    })
