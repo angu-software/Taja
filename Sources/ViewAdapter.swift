@@ -14,7 +14,6 @@ final class ViewAdapter: ObservableObject {
 
     static func makeMemoryCards() -> [MemoryCard] {
         return CardGenerator.makeMemoryCards()
-            .prefix(4)
             .map({ $0 })
             .shuffled()
 
@@ -43,6 +42,12 @@ final class ViewAdapter: ObservableObject {
 
     func didTapCard(_ card: MemoryCard) {
         gameController.turnCardToReveal(card)
+    }
+
+    func cardIndex(forRow row: Int, column: Int) -> Int {
+        let columnCount = 3
+        let offset = row * columnCount
+        return offset + column
     }
 
     private func observeCardChanges() {

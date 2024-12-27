@@ -42,6 +42,7 @@
 			membershipExceptions = (
 				TajaTests/CardGeneratorTests.swift,
 				TajaTests/PhotoAssetsTests.swift,
+				TajaTests/ViewAdapterTets.swift,
 				TajaUITests/TajaUITests.swift,
 			);
 			target = B341EBFF2D15679500860CC6 /* Taja */;
@@ -58,6 +59,7 @@
 			membershipExceptions = (
 				TajaTests/CardGeneratorTests.swift,
 				TajaTests/PhotoAssetsTests.swift,
+				TajaTests/ViewAdapterTets.swift,
 			);
 			target = B341EC102D15679900860CC6 /* TajaTests */;
 		};

@@ -10,6 +10,7 @@ public struct MemoryCardView: View {
 
     public typealias State = MemoryCard
 
+    private let size: CGFloat = 144
     private let frontImage: UIImage
     private let backImage:UIImage
     private let state: State
@@ -40,7 +41,7 @@ public struct MemoryCardView: View {
         Image(uiImage: shownImage)
             .resizable()
             .scaledToFill()
-            .frame(width: 200, height: 200)
+            .frame(width: size, height: size)
             .clipped()
             .background(.white)
             .border(.black,

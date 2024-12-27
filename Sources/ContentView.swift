@@ -26,27 +26,30 @@ struct ContentView: View {
         GridLayout(alignment: .center,
                    horizontalSpacing: 4,
                    verticalSpacing: 4) {
-            ForEach(0..<2) { rowNumber in
+            ForEach(0..<6) { rowNumber in
                 GridRow(alignment: .center) {
-                    ForEach(0..<2) { columnNumber in
-                        MemoryCardView(memoryCard: memoryCards[rowNumber * 2 + columnNumber])
+                    ForEach(0..<3) { columnNumber in
+                        let cardIndex = viewAdapter.cardIndex(forRow: rowNumber,
+                                                              column: columnNumber)
+                        let card = memoryCards[cardIndex]
+                        return MemoryCardView(memoryCard: card)
                             .onTapGesture {
-                                viewAdapter.didTapCard(memoryCards[rowNumber * 2 + columnNumber])
+                                viewAdapter.didTapCard(card)
                             }
                     }
                 }
             }
         }
-                   .toolbar(content: {
-                       ToolbarItem(placement: .bottomBar) {
-                           Button(action: {
-                               viewAdapter.startNewGame()
-                           }) {
-                               Text("New Game")
-                           }
-                       }
-                   })
-                   .padding()
+       .toolbar(content: {
+           ToolbarItem(placement: .bottomBar) {
+               Button(action: {
+                   viewAdapter.startNewGame()
+               }) {
+                   Text("New Game")
+               }
+           }
+       })
+       .padding()
     }
 }
 
