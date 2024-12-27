@@ -17,7 +17,7 @@ final class TajaMemoryUITests: XCTestCase {
     override func setUp() async throws {
         try await super.setUp()
 
-        startNewGame()
+        startApp()
     }
 
     func test_should_reveal_a_card_when_tapped() throws {
@@ -44,10 +44,25 @@ final class TajaMemoryUITests: XCTestCase {
         XCTAssert(isCardConcealed(secondCardId))
     }
 
-    private func startNewGame() {
+    func test_should_start_new_game() {
+        let firstCard = chooseCard("memoryCard_1_concealed_photo01")
+        tapCard(firstCard)
+
+        startNewGame()
+
+        // all cards concealed
+        XCTAssert(isCardConcealed("memoryCard_1_concealed_photo01"))
+    }
+
+    private func startApp() {
         app.launch()
         _ = app.wait(for: .runningForeground,
                      timeout: 0.3)
+    }
+
+    private func startNewGame() {
+        let startNewGameButton = app.buttons["Neues Spiel"]
+        startNewGameButton.tap()
     }
 
     private func choseConcealedCard() -> XCUIElement {

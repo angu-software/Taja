@@ -37,7 +37,16 @@ struct ContentView: View {
                 }
             }
         }
-        .padding()
+                   .toolbar(content: {
+                       ToolbarItem(placement: .bottomBar) {
+                           Button(action: {
+                               viewAdapter.startNewGame()
+                           }) {
+                               Text("Neues Spiel")
+                           }
+                       }
+                   })
+                   .padding()
     }
 }
 
