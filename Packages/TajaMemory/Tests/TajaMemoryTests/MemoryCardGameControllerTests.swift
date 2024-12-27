@@ -75,6 +75,18 @@ final class MemoryCardGameControllerTests {
         #expect(!isCardRevealed(secondCard))
     }
 
+    @Test
+    func should_not_conceal_revealed_card_when_selected_again() async throws {
+        let firstCard = try #require(choseConcealedCard())
+        turnCard(firstCard)
+
+        turnCard(firstCard)
+
+        try await lookAtCards()
+
+        #expect(isCardRevealed(firstCard))
+    }
+
     // MARK: - Testing DSL
 
     enum CardMatcher {
@@ -104,7 +116,7 @@ final class MemoryCardGameControllerTests {
     }
 
     private func turnCard(_ card: MemoryCard) {
-        controller.didSelectCard(card)
+        controller.turnCardToReveal(card)
     }
 
     private func lookAtCards() async throws {

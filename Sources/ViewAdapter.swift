@@ -31,16 +31,20 @@ final class ViewAdapter: ObservableObject {
         self.gameController = MemoryCardGameController(cards: cards)
         self.cards = cards
 
-        self.gameController.cardsDidChange = { @MainActor [weak self] in
+        observeCardChanges()
+    }
+
+    func didTapCard(_ card: MemoryCard) {
+        gameController.turnCardToReveal(card)
+    }
+
+    private func observeCardChanges() {
+        gameController.cardsDidChange = { @MainActor [weak self] in
             guard let self else {
                 return
             }
 
             self.cards = self.gameController.cards
         }
-    }
-
-    func didTapCard(_ card: MemoryCard) {
-        gameController.didSelectCard(card)
     }
 }

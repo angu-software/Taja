@@ -58,9 +58,18 @@ public final class MemoryCardGameController {
         observeGameLoop()
     }
 
-    public func didSelectCard(_ card: MemoryCard) {
-        selectedCards.append(card)
+    public func turnCardToReveal(_ card: MemoryCard) {
+        memorizeConcealedCard(card)
         runGameLoop()
+    }
+
+    private func memorizeConcealedCard(_ card: MemoryCard) {
+        guard let index = index(of: card),
+              cards[index].state == .concealed else {
+            return
+        }
+
+        selectedCards.append(card)
     }
 
     private func observeGameLoop() {
